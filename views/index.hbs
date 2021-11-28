@@ -1,8 +1,13 @@
 <div class="main">
     <h1 class="head">Calicut University</h1>
+    {{#each items}}
     <div class="buttons">
-        <a href="/bca" class="but"> Bca </a>
+        <a href="/{{this.item}}" class="but"> {{this.item}} </a>
     </div>
+    {{/each}}
+
+
+         <a href="/add" class="btn btn-success mt-5"> add item </a>
 </div>
 
 <style>
