@@ -1,12 +1,10 @@
 <div class="main">
     <h1 class="head">Calicut University</h1>
-    {{#each items}}
+    {{#each data}}
     <div class="buttons">
-        <a href="/{{this.item}}" class="but"> {{this.item}} </a>
+        <a href="/{{this.name}}" class="but"> {{this.name}} </a>
     </div>
     {{/each}}
-
-
          <a href="/add" class="btn btn-success mt-5"> add item </a>
 </div>
 
