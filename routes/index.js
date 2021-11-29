@@ -5,14 +5,14 @@ var db = require('../connection')
 
 /* GET home page. */
 router.get('/', async function (req, res) {
-  res.redirect('/courses');
+  res.render('index');
 });
 
 router.get('/courses', async function (req, res) {
   req.session.url = req.route.path
   console.log(req.session.url);
   let data = await db.get().collection('data').find({"item":"courses"}).toArray()
-  res.render('index',{data});
+  res.render('courses',{data});
 });
 
 router.get('/add:parameter', async function (req, res) {
@@ -66,43 +66,28 @@ router.get('/:course/:semester/:subject/:type', async function (req, res) {
   let semester = req.params.semester
   let subject = req.params.subject
   let type = req.params.type
-  let fileid = (course + semester + subject + type)
   url = course+'/'+semester+'/'+subject+'/'+type
   req.session.url = url
-  let data = await db.get().collection('data').find({ "item":fileid}).toArray()
-  res.render('files',{course,semester,subject,type,data});
+  let uploads = await db.get().collection('uploads').find().toArray()
+  res.render('files',{course,semester,subject,type,uploads});
+});
+
+router.get('/upload:parameter', async function (req, res) {
+  let parameter = req.params.parameter
+  res.render('upload',{parameter});
+});
+
+router.post('/upload', async function (req, res) {
+  let upload = req.body
+  db.get().collection('uploads').insertOne(upload)
+  url = req.session.url
+  res.redirect(url);
 });
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// router.get('/english', async function (req, res) {
-//   res.render('type');
-// });
-
-// router.get('/form', async function (req, res) {
-//   res.render('form');
-// });
 
 
 module.exports = router;

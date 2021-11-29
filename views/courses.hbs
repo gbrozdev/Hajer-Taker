@@ -1,10 +1,13 @@
 <div class="main">
     <h3 class="head">Calicut University</h3>
     <div class="buttons">
-         <a href="/courses" class="but btn btn-info mt-3"> Courses </a>
-         <a href="/upload" class="but btn btn-info mt-3"> Upload </a>
+    {{#each data}}
+        <a href="/course/{{this.name}}" class="but btn btn-info">{{this.name}}</a>
+    {{/each}}
     </div>
+         <a href="/addcourses" class="btn btn-success mt-3"> add item </a>
 </div>
+
 
 <style>
     .main {

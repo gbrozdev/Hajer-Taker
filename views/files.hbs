@@ -1,10 +1,11 @@
 <div class="main">
     <h1 class="head">Downloads</h1>
-{{#each data}}
+    {{#each uploads}}
     <div class="buttons">
-        <a href="/1stchapter" class="but">{{this.name}}</a>
+        <a href="{{this.link}}" class="but">{{this.name}}</a>
     </div>
-{{/each}}
+    {{/each}}
+    <a href="/upload{{course}}{{semester}}{{subject}}{{type}}" class="btn btn-success mt-5"> add item </a>
 </div>
 
 <style>
