@@ -1,8 +1,12 @@
 <div class="main">
-    <h1 class="head">Subject</h1>
+    <h3 class="head">Subject</h3>
+    {{#each data}}
     <div class="buttons">
-        <a href="/english" class="but"> English </a>
+        <a href="/{{../course}}/{{../semester}}/{{this.name}}" class="but"> {{this.name}} </a>
     </div>
+    {{/each}}
+        <a href="/add{{course}}{{semester}}" class="btn btn-success mt-5"> add bvnbvnitem </a>
+
 </div>
 
 <style>

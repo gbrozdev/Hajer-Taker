@@ -1,9 +1,16 @@
 <div class="main">
     <h1 class="head">Type</h1>
+    {{#each data}}
     <div class="buttons">
-        <a href="/notes" class="but"> note </a>
+        <a href="/{{../course}}/{{../semester}}/{{../subject}}/{{this.name}}" class="but"> {{this.name}} </a>
     </div>
+    {{/each}}
+
+    <a href="/add{{course}}{{semester}}{{subject}}" class="btn btn-success mt-5"> add item </a>
+
 </div>
+
+
 
 <style>
     .main {

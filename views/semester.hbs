@@ -1,11 +1,11 @@
 <div class="main">
     <h1 class="head">Semester</h1>
-    {{!-- {{#each semester}}
+    {{#each data}}
     <div class="buttons">
-        <a href="/semester1" class="but"> {{this.item}} </a>
+        <a href="/{{../course}}/{{this.name}}" class="but"> {{this.name}} </a>
     </div>
-    {{/each}} --}}
-        <a href="/{{course}}/add" class="btn btn-success mt-5"> add item </a>
+    {{/each}}
+        <a href="/add{{course}}" class="btn btn-success mt-5"> add bvnbvnitem </a>
 </div>
 
 

@@ -1,8 +1,10 @@
 <div class="main">
-    <h1 class="head">Calicut University</h1>
+    <h1 class="head">Downloads</h1>
+{{#each data}}
     <div class="buttons">
-        <a href="/1stchapter" class="but"> 1st Chapter Download </a>
+        <a href="/1stchapter" class="but">{{this.name}}</a>
     </div>
+{{/each}}
 </div>
 
 <style>
