@@ -1,15 +1,17 @@
 <div class="main">
-    <h1 class="head">{{subject}}</h1>
+    <h1 class="head">Videos</h1>
     <div class="buttons">
-    {{#each data}}
-        <a href="/{{../course}}/{{../semester}}/{{../subject}}/{{this.name}}" class="but btn btn-info"> {{this.name}} </a>
-    {{/each}}
-        <a href="/videos/{{course}}/{{semester}}/{{subject}}" class="but btn btn-info"> Videos </a>
+        {{#each uploads}}
+        <h3 class="m-2"> {{this.name}}</h3>
+        <iframe width="400" height="225" src="https://www.youtube.com/embed/{{this.link}}?controls=0"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        {{/each}}
+
     </div>
-    <a href="/add{{course}}{{semester}}{{subject}}" class="add btn btn-success mt-5"> add item </a>
+    <a href="/uploadvideos{{course}}{{semester}}{{subject}}" class="add btn btn-success mt-5"> Add Videos </a>
 </div>
-
-
 
 
 <style>
@@ -31,7 +33,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-bottom: 7vh;
+        margin-bottom: 10vh;
     }
 
     .but {

@@ -5,7 +5,8 @@ var db = require('../connection')
 
 /* GET home page. */
 router.get('/', async function (req, res) {
-  res.render('index');
+  let admin = req.session.admin = true
+  res.render('index',{admin});
 });
 
 router.get('/courses', async function (req, res) {
@@ -30,6 +31,36 @@ router.post('/add', async function (req, res) {
 
 router.get('/about', async function (req, res) {
   res.render('about');
+});
+
+router.get('/admin', async function (req, res) {
+  res.render('admin');
+});
+
+router.post('/admin', async function (req, res) {
+  let admindata = req.body
+  if (admindata.gmail === "gbroz@123",admindata.password === "9846551975") {
+    admin = true
+    req.session.admin = true
+  res.render('index',{admin});
+  } else {
+    res.render('admin');
+}
+});
+
+router.get('/videos/:course/:semester/:subject', async function (req, res) {
+  let course= req.params.course
+  let semester = req.params.semester
+  let subject = req.params.subject
+  let videoid = ('videos'+course + semester + subject)
+  url = 'videos' + '/' + course+'/'+semester+'/'+subject
+  req.session.url = url
+  let uploads = await db.get().collection('uploads').find({"item":videoid}).toArray()
+  
+
+  
+ uploads = await db.get().collection('uploads').find({"item":videoid}).toArray()
+  res.render('videos',{course,semester,subject,uploads});
 });
 
 router.get('/course/:course', async function (req, res) {
@@ -66,9 +97,10 @@ router.get('/:course/:semester/:subject/:type', async function (req, res) {
   let semester = req.params.semester
   let subject = req.params.subject
   let type = req.params.type
+  let fileid = (course + semester + subject +type)
   url = course+'/'+semester+'/'+subject+'/'+type
   req.session.url = url
-  let uploads = await db.get().collection('uploads').find().toArray()
+  let uploads = await db.get().collection('uploads').find({"item":fileid}).toArray()
   res.render('files',{course,semester,subject,type,uploads});
 });
 
@@ -79,11 +111,13 @@ router.get('/upload:parameter', async function (req, res) {
 
 router.post('/upload', async function (req, res) {
   let upload = req.body
+    var ytlink = upload.link
+    ytlink = ytlink.replace("https://youtu.be/", "");
+    upload.link = ytlink
   db.get().collection('uploads').insertOne(upload)
   url = req.session.url
   res.redirect(url);
 });
-
 
 
 
