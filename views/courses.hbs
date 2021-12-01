@@ -3,16 +3,16 @@
     <div class="buttons">
         {{#each data}}
         <div class="but">
-            <a href="/" class="delete"><i class="far fa-trash-alt"></i></a>
-            <a href="/" class="edit"><i class="far fa-edit"></i></a>
+            {{#if ../admin}}
+            <a href="/delete/{{this.name}}" class="delete"><i class="far fa-trash-alt"></i></a>
+            <a href="/edit/{{this.name}}" class="edit"><i class="far fa-edit"></i></a>
+            {{/if}}
             <a href="/course/{{this.name}}">{{this.name}}</a>
-            
         </div>
         {{/each}}
     </div>
     <a href="/addcourses" class="add btn btn-success mt-3"> Add Course </a>
 </div>
-
 
 <style>
     .main {
@@ -37,7 +37,6 @@
         position: relative;
     }
 
-
     .but {
         margin: 10px;
         width: 80vw;
@@ -58,12 +57,12 @@
 
     .delete {
         position: absolute;
-        right: 25px;
+        right: 30px;
     }
 
     .edit {
         position: absolute;
-        right: 50px;
+        right: 60px;
     }
 
     .add {
