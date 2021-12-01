@@ -42,7 +42,6 @@
   crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 
-
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark">
@@ -72,7 +71,6 @@
   {{{body}}}
 
 
-
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -92,12 +90,16 @@
 <style>
   .navbar {
     position: fixed;
+    z-index: 1;
     top: 0%;
     left: 0%;
     width: 100%;
     background: linear-gradient(90deg,
         rgba(20, 159, 255, 1) 0%,
         rgba(17, 122, 255, 1) 100%);
+    -webkit-box-shadow: 0 8px 6px -8px black;
+    -moz-box-shadow: 0 8px 6px -8px black;
+    box-shadow: 0 8px 6px -8px black;
   }
 
   .navbar-brand {

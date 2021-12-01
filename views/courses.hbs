@@ -2,7 +2,12 @@
     <h3 class="head">Calicut University</h3>
     <div class="buttons">
         {{#each data}}
-        <a href="/course/{{this.name}}" class="but btn btn-info">{{this.name}}</a>
+        <div class="but">
+            <a href="/" class="delete"><i class="far fa-trash-alt"></i></a>
+            <a href="/" class="edit"><i class="far fa-edit"></i></a>
+            <a href="/course/{{this.name}}">{{this.name}}</a>
+            
+        </div>
         {{/each}}
     </div>
     <a href="/addcourses" class="add btn btn-success mt-3"> Add Course </a>
@@ -29,7 +34,9 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 7vh;
+        position: relative;
     }
+
 
     .but {
         margin: 10px;
@@ -43,9 +50,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        color: white;
         background: linear-gradient(90deg,
                 rgba(20, 159, 255, 1) 0%,
                 rgba(17, 122, 255, 1) 100%);
+    }
+
+    .delete {
+        position: absolute;
+        right: 25px;
+    }
+
+    .edit {
+        position: absolute;
+        right: 50px;
     }
 
     .add {
