@@ -1,11 +1,11 @@
 <div class="main">
     <h3 class="head">{{semester}}</h3>
     <div class="buttons">
-    {{#each data}}
+        {{#each data}}
         <a href="/{{../course}}/{{../semester}}/{{this.name}}" class="but btn btn-info"> {{this.name}} </a>
-    {{/each}}
+        {{/each}}
     </div>
-        <a href="/add{{course}}{{semester}}" class="add btn btn-success mt-5"> add bvnbvnitem </a>
+    <a href="/add{{course}}{{semester}}" class="add btn btn-success mt-5"> add bvnbvnitem </a>
 
 </div>
 
@@ -44,6 +44,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        background: linear-gradient(90deg,
+                rgba(20, 159, 255, 1) 0%,
+                rgba(17, 122, 255, 1) 100%);
     }
 
     .add {

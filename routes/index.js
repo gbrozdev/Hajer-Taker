@@ -5,8 +5,11 @@ var db = require('../connection')
 
 /* GET home page. */
 router.get('/', async function (req, res) {
-  let admin = req.session.admin = true
-  res.render('index',{admin});
+  if (req.session.admin === true) {
+    res.render('index',{admin});
+  }
+  res.render('index');
+  
 });
 
 router.get('/courses', async function (req, res) {
@@ -40,9 +43,8 @@ router.get('/admin', async function (req, res) {
 router.post('/admin', async function (req, res) {
   let admindata = req.body
   if (admindata.gmail === "gbroz@123",admindata.password === "9846551975") {
-    admin = true
     req.session.admin = true
-  res.render('index',{admin});
+  res.render('index');
   } else {
     res.render('admin');
 }
