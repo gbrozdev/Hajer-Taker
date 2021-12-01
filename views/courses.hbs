@@ -1,5 +1,5 @@
 <div class="main">
-    <h3 class="head">Calicut University</h3>
+    <h3 class="head">Courses</h3>
     <div class="buttons">
         {{#each data}}
         <div class="but">
@@ -7,7 +7,7 @@
             <a href="/delete/{{this._id}}" class="delete"><i class="far fa-trash-alt"></i></a>
             <a href="/edit/{{this._id}}" class="edit"><i class="far fa-edit"></i></a>
             {{/if}}
-            <a href="/course/{{this.name}}">{{this.name}}</a>
+            <a id="v" href="/course/{{this.name}}">{{this.name}}</a>
         </div>
         {{/each}}
     </div>

@@ -20,6 +20,22 @@ router.get('/delete/:id', async function (req, res) {
   res.redirect('back')
 });
 
+router.get('/edit/:id', async function (req, res) {
+  let id = req.params.id
+  console.log(id);
+  let data = await db.get().collection('data').findOne({ _id: ObjectID(id) })
+  console.log(data);
+  res.render('edit',{data})
+});
+
+router.post('/edit', async function (req, res) {
+  let newdata = req.body.name
+  let query = { _id: ObjectID(req.body.id) }
+  var newvalues = { $set: {name:newdata} };
+  db.get().collection('data').updateOne(query, newvalues)
+  res.redirect(req.session.url)
+});
+
 router.get('/courses', async function (req, res) {
   req.session.url = req.route.path
   let data = await db.get().collection('data').find({ "item": "courses" }).toArray()
