@@ -1,3 +1,4 @@
+const { ObjectID } = require('bson');
 var express = require('express');
 var router = express.Router();
 var db = require('../connection')
@@ -15,7 +16,7 @@ router.get('/', async function (req, res) {
 router.get('/delete/:id', async function (req, res) {
   let id = req.params.id
   console.log(id);
-  db.get().collection('data').deleteOne({ "name": id })
+  db.get().collection('data').deleteOne({ _id : ObjectID(id) })
   res.redirect('back')
 });
 

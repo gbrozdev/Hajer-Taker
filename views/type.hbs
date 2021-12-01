@@ -3,12 +3,12 @@
     <div class="buttons">
         {{#each data}}
         <div class="but">
-            {{#if ../admin}} 
-            <a href="/delete/{{../course}}{{../semester}}{{../subject}}{{this.name}}" class="delete"><i
+            {{#if ../admin}}
+            <a href="/delete/{{this._id}}" class="delete"><i
                     class="far fa-trash-alt"></i></a>
-            <a href="/edit/{{this.name}}" class="edit"><i class="far fa-edit"></i></a>
+            <a href="/edit/{{this._id}}" class="edit"><i class="far fa-edit"></i></a>
             {{/if}}
-        <a href="/{{../course}}/{{../semester}}/{{../subject}}/{{this.name}}"> {{this.name}}</a>
+            <a href="/{{../course}}/{{../semester}}/{{../subject}}/{{this.name}}"> {{this.name}}</a>
         </div>
         {{/each}}
         <a href="/videos/{{course}}/{{semester}}/{{subject}}" class="vidbut btn btn-info"> Videos </a>
@@ -44,7 +44,7 @@
 
     .but {
         margin: 10px;
-        width: 80vw;
+        width: 90vw;
         height: 10vh;
         padding: 3px;
         border-radius: 0.5rem;
@@ -62,12 +62,12 @@
 
     .delete {
         position: absolute;
-        right: 30px;
+        right: 25px;
     }
 
     .edit {
         position: absolute;
-        right: 60px;
+        right: 55px;
     }
 
     .add {
@@ -85,7 +85,7 @@
 
     .vidbut {
         margin: 10px;
-        width: 80vw;
+        width: 90vw;
         height: 10vh;
         padding: 3px;
         border-radius: 0.5rem;

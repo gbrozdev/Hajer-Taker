@@ -4,8 +4,8 @@
         {{#each data}}
         <div class="but">
             {{#if ../admin}}
-            <a href="/delete/{{../course}}{{../semester}}{{this.name}}" class="delete"><i class="far fa-trash-alt"></i></a>
-            <a href="/edit/{{this.name}}" class="edit"><i class="far fa-edit"></i></a>
+            <a href="/delete/{{this._id}}" class="delete"><i class="far fa-trash-alt"></i></a>
+            <a href="/edit/{{this._id}}" class="edit"><i class="far fa-edit"></i></a>
             {{/if}}
             <a href="/{{../course}}/{{../semester}}/{{this.name}}"> {{this.name}} </a>
         </div>
@@ -40,7 +40,7 @@
 
     .but {
         margin: 10px;
-        width: 80vw;
+        width: 90vw;
         height: 10vh;
         padding: 3px;
         border-radius: 0.5rem;
@@ -58,12 +58,12 @@
 
     .delete {
         position: absolute;
-        right: 30px;
+        right: 25px;
     }
 
     .edit {
         position: absolute;
-        right: 60px;
+        right: 55px;
     }
 
     .add {
