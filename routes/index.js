@@ -15,17 +15,26 @@ router.get('/', async function (req, res) {
 
 router.get('/delete/:id', async function (req, res) {
   let id = req.params.id
-  console.log(id);
   db.get().collection('data').deleteOne({ _id : ObjectID(id) })
+  res.redirect('back')
+});
+
+router.get('/deleteupload/:id', async function (req, res) {
+  let id = req.params.id
+  db.get().collection('uploads').deleteOne({ _id : ObjectID(id) })
   res.redirect('back')
 });
 
 router.get('/edit/:id', async function (req, res) {
   let id = req.params.id
-  console.log(id);
   let data = await db.get().collection('data').findOne({ _id: ObjectID(id) })
-  console.log(data);
   res.render('edit',{data})
+});
+
+router.get('/editupload/:id', async function (req, res) {
+  let id = req.params.id
+  let upload = await db.get().collection('uploads').findOne({ _id: ObjectID(id) })
+  res.render('editupload',{upload})
 });
 
 router.post('/edit', async function (req, res) {
@@ -33,6 +42,15 @@ router.post('/edit', async function (req, res) {
   let query = { _id: ObjectID(req.body.id) }
   var newvalues = { $set: {name:newdata} };
   db.get().collection('data').updateOne(query, newvalues)
+  res.redirect(req.session.url)
+});
+
+router.post('/editupload', async function (req, res) {
+  let newname = req.body.name
+  let newlink = req.body.link
+  let query = { _id: ObjectID(req.body.id) }
+  var newvalues = { $set: { name:newname,link:newlink } };
+  db.get().collection('uploads').updateOne(query, newvalues)
   res.redirect(req.session.url)
 });
 
