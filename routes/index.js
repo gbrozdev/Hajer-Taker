@@ -13,6 +13,22 @@ router.get('/', async function (req, res) {
   }
 });
 
+router.get('/profile', async function (req, res) {
+  res.render('profile');
+});
+
+router.get('/list', async function (req, res) {
+  res.render('list');
+});
+
+router.get('/about', async function (req, res) {
+  res.render('about');
+});
+
+router.get('/admin', async function (req, res) {
+  res.render('admin');
+});
+
 router.get('/delete/:id', async function (req, res) {
   let id = req.params.id
   db.get().collection('data').deleteOne({ _id : ObjectID(id) })
@@ -75,14 +91,6 @@ router.post('/add', async function (req, res) {
   db.get().collection('data').insertOne(data)
   url = req.session.url
   res.redirect(url);
-});
-
-router.get('/about', async function (req, res) {
-  res.render('about');
-});
-
-router.get('/admin', async function (req, res) {
-  res.render('admin');
 });
 
 router.post('/admin', async function (req, res) {

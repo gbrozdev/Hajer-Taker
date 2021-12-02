@@ -1,7 +1,10 @@
 <div class="main">
     <h3 class="head">Calicut University</h3>
     <div class="buttons">
-        <a href="/courses" class="but btn btn-info mt-3"> Courses </a>
+        <a href="/courses" class="but1 but btn btn-info mt-3"> Courses </a>
+        <a href="/courses" class="but2 but btn btn-info mt-3"> Common Subjects </a>
+        <a href="/list" class="but3 but btn btn-info mt-3"> Saved List </a>
+        <a href="/profile" class="but4 but btn btn-info mt-3"> My Account </a>
     </div>
 </div>
 
@@ -30,7 +33,7 @@
     .but {
         margin: 5px;
         width: 90vw;
-        height: 20vh;
+        height: 17vh;
         padding: 3px;
         border-radius: 0.5rem;
         font-weight: 600;
@@ -39,8 +42,29 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .but1 {
         background: linear-gradient(90deg,
                 rgba(20, 159, 255, 1) 0%,
                 rgba(17, 122, 255, 1) 100%);
+    }
+
+    .but2 {
+        background: linear-gradient(90deg,
+                rgba(255, 118, 20, 1) 0%,
+                rgba(255, 84, 17, 1) 100%);
+    }
+
+    .but3 {
+        background: linear-gradient(90deg,
+                rgba(93, 12, 255, 1) 0%,
+                rgba(155, 0, 250, 1) 100%);
+    }
+
+    .but4 {
+        background: linear-gradient(90deg,
+                rgba(255, 12, 241, 1) 0%,
+                rgba(250, 0, 135, 1) 100%);
     }
 </style>
