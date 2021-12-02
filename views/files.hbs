@@ -3,8 +3,10 @@
     <div class="buttons">
         {{#each uploads}}
         <div class="but">
+            {{#if ../admin}}
         <a href="/deleteupload/{{this._id}}" class="delete"><i class="far fa-trash-alt"></i></a>
         <a href="/editupload/{{this._id}}" class="edit"><i class="far fa-edit"></i></a>
+            {{/if}}
         <a href="{{this.link}}">{{this.name}}<i class="download fas fa-download"></i></a>
         </div>
         {{/each}}
@@ -23,7 +25,8 @@
 
     .download {
         position: absolute;
-        right: 40px;
+        right: 30px;
+        margin-top:5px ;
     }
 
     .head {
@@ -58,14 +61,12 @@
 
     .delete {
         position: absolute;
-        right: 70px;
-        margin-bottom: 8px;
+        right: 65px;
     }
 
     .edit {
         position: absolute;
-        right: 100px;
-        margin-bottom: 8px;
+        right: 95px;
     }
     .add {
         width: 100vw;
