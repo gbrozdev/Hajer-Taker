@@ -3,14 +3,15 @@
     <div class="buttons">
         {{#each uploads}}
         <div class="vid">
-<div class="row">
-            <h5 class=""> {{this.name}}</h5>
-            {{#if ../admin}}
-            <a href="/deleteupload/{{this._id}}" class="delete"><i class="far fa-trash-alt"></i></a>
-            {{/if}}
-</div>
-            <iframe width="400" height="225" src="https://www.youtube.com/embed/{{this.link}}?controls=1"
-                title="YouTube video player" frameborder="0"
+            <div class="row vid-head">
+                <h5 class="ml-4"> {{this.name}}</h5>
+                {{#if ../admin}}
+                <a href="/deleteupload/{{this._id}}" class="delete mt-1"><i class="far fa-trash-alt"></i></a>
+                {{/if}}
+            </div>
+
+            <iframe src="https://www.youtube.com/embed/{{this.link}}?controls=1" title="YouTube video player"
+                frameborder="0" class="vid-screen"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
         </div>
@@ -21,6 +22,19 @@
 
 
 <style>
+    .vid-screen {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 56.25vw;
+    }
+    .vid-head{
+        height: 60px;
+        display: flex;
+        align-items: center;
+    }
+
     .main {
         display: flex;
         flex-direction: column;
@@ -32,6 +46,7 @@
     .delete {
         position: absolute;
         right: 30px;
+        font-size: 17px;
     }
 
     .head {
@@ -44,9 +59,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-bottom: 10vh;
+        margin-bottom: 7vh;
+        background-color: rgb(235, 235, 235);
     }
-    .vid{
+
+    .vid {
         position: relative;
         align-items: center;
     }
