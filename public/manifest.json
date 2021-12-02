@@ -2,7 +2,7 @@
     "name": "Studocu",
     "short_name":"Studocu",
     "start_url":".",
-    "background_color":"#6dcdb1",
+    "background_color":"#149fff",
     "theme_color":"#149fff",
     "display":"standalone",
     "icons": [ 
