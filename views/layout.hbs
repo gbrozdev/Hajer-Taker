@@ -24,7 +24,7 @@
     referrerpolicy="origin"></script>
   <!-- Bootstrap CSS -->
 
-  <link rel="icon" type="jpg" href="/images\college-help.jpg">
+  <link rel="icon" type="png" href="/images\logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css">
@@ -46,11 +46,13 @@
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="/">Study Docs</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="center">
+    <a class="navbar-brand" href="/">Studoc</a>
+    </div>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
@@ -89,6 +91,13 @@
 
 
 <style>
+  .center{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    top: auto;
+  }
   .navbar {
     position: fixed;
     z-index: 1;
