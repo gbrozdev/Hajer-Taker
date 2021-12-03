@@ -35,6 +35,7 @@ router.get('/logout', function (req, res) {
 });
 
 router.get('/profile', async function (req, res) {
+  req.session.url = '/profile'
   let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
   let uploads = await db.get().collection('uploads').find({ "user": req.session.user }).toArray()
   if (user) {
@@ -275,7 +276,6 @@ router.post('/login', (req, res) => {
       req.session.loggedfalse = false
       req.session.loggedIN = true
       res.redirect(req.session.url)
-
     } else {
       req.session.loggedfalse = true
       res.redirect('/login');
