@@ -13,6 +13,8 @@ router.get('/myprofile', async function (req, res) {
   let uploads = await db.get().collection('uploads').find({ "user": req.session.user }).toArray()
   if (user) {
     res.render('myprofile', { user, uploads })
+  } else {
+    res.redirect('/login')
   }
 });
 
