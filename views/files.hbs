@@ -3,7 +3,7 @@
     <div class="buttons">
         {{#each uploads}}
         <div class="but">
-        <a href="{{this.link}}">{{this.name}}</a>
+        <a href="/{{../course}}/{{../semester}}/{{../subject}}/{{../type}}/{{this._id}}/{{this.name}}">{{this.name}}</a>
         <div class="row">
             {{#if ../admin}}
         <a href="/deleteupload/{{this._id}}" class="delete"><i class="far fa-trash-alt"></i></a>
@@ -27,6 +27,7 @@ function saved(){
     .save{
         font-size: 22px;
     }
+
     .main {
         display: flex;
         flex-direction: column;

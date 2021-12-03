@@ -237,6 +237,12 @@ router.get('/:course/:semester/:subject/:type', async function (req, res) {
   }
 });
 
+router.get('/:course/:semester/:subject/:type/:id/:filename', async function (req, res) {
+  let id = req.params.id
+  let file = await db.get().collection('uploads').findOne({ _id: ObjectId(id) })
+  res.render('fileframe', { file });
+ })
+
 router.get('/upload:parameter', async function (req, res) {
   let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
   let parameter = req.params.parameter
