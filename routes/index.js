@@ -16,10 +16,10 @@ router.get('/', async function (req, res) {
 });
 
 router.get('/list/:id', async function (req, res) {
-  let id = req.params.id
-  let userid = req.session.user
   if (req.session.user) {
-    console.log(id, userid);
+    let uploads = await db.get().collection('uploads').findOne({ _id: ObjectId(req.params.id) })
+    let listdata = { data: uploads, userid: req.session.user }
+    db.get().collection('list').insertOne(listdata)
   } else {
     res.redirect('/login')
   }
@@ -41,7 +41,13 @@ router.get('/profile', async function (req, res) {
 });
 
 router.get('/list', async function (req, res) {
-  res.render('list');
+  req.session.url = '/list'
+  if (req.session.user) {
+    let listdata = await db.get().collection('list').find({ userid: req.session.user }).toArray()
+    res.render('list', { listdata });
+  } else {
+    res.redirect('/login')
+  }
 });
 
 router.get('/about', async function (req, res) {
