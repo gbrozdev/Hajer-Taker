@@ -7,15 +7,15 @@
 
     <form class="form-signin" action="/signup" method="post">
     <h3 class="title m-3">Sign Up</h3>
-        <label for="inputName">Name</label>
-        <input type="text" name="name" id="inputName" class="form-control form-control-lg" placeholder="Name" required autofocus>
-        <label for="inputEmail">Email address</label>
-        <input type="email" name="gmail" id="inputEmail" class="form-control form-control-lg" placeholder="Email address" required
+
+        <input type="text" name="name" class="form-control form-control-lg" placeholder="Name" required autofocus>
+
+        <input type="email" name="gmail"  class="form-control form-control-lg" placeholder="Email address" required
             autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required>
+
+        <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" required>
         <input type="text" name="about" value="A Studocu Member" hidden>
-        <button class="btn btn-lg btn-success btn-block" type="submit">Sign up</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
         <a class="mt-3" href="/login"><b>already have ...account ?</b></a>
     </form>
 
@@ -24,9 +24,12 @@
 
 
 <style>
+    input{
+        margin-top: 20px;
+    }
     .login-body a{
         margin-top: 20px;
-        color: rgb(0, 110, 255);
+        color: #149fff;
     }
     .login-body{
         display: flex;
@@ -92,5 +95,10 @@
         margin-bottom: 10px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+    }
+    .btn{
+        background-color: #149fff;
+        color: white;
+        font-weight: 600;
     }
 </style>

@@ -59,7 +59,6 @@ router.get('/admin', async function (req, res) {
 });
 
 router.get('/login', function (req, res) {
-  console.log(req.session);
   if (req.session.loggedIN) {
     res.redirect('/users/')
   }
@@ -130,7 +129,6 @@ router.get('/courses', async function (req, res) {
 
 router.get('/add:parameter', async function (req, res) {
   let parameter = req.params.parameter
-  console.log(parameter);
   res.render('add', { parameter });
 });
 
