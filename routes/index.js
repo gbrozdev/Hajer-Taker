@@ -8,14 +8,9 @@ var ObjectId = require('mongodb').ObjectId
 /* GET home page. */
 
 router.get('/profile', async function (req, res) {
-  req.session.url = '/profile'
-  let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
-  let uploads = await db.get().collection('uploads').find({ "user": req.session.user }).toArray()
-  if (user) {
-    res.render('profile', { user, uploads })
-  } else {
-    res.redirect('/login')
-  }
+
+    res.render('profile')
+
 });
 
 router.get('/', async function (req, res) {
