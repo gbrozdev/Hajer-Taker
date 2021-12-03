@@ -22,7 +22,9 @@ router.get('/logout', function (req, res) {
 
 router.get('/profile', async function (req, res) {
   let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
-  res.render('profile', {user})
+  let uploads = await db.get().collection('uploads').find({ "user": req.session.user }).toArray()
+  console.log(uploads);
+  res.render('profile', { user, uploads })
 });
 
 router.get('/list', async function (req, res) {
@@ -203,8 +205,9 @@ router.get('/:course/:semester/:subject/:type', async function (req, res) {
 });
 
 router.get('/upload:parameter', async function (req, res) {
+  let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
   let parameter = req.params.parameter
-  res.render('upload', { parameter });
+  res.render('upload', { parameter ,user});
 });
 
 router.post('/upload', async function (req, res) {
