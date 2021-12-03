@@ -1,4 +1,3 @@
-const { ObjectID } = require('bson');
 var express = require('express');
 var router = express.Router();
 var db = require('../connection')
@@ -6,20 +5,19 @@ var ObjectId = require('mongodb').ObjectId
 
 
 /* GET home page. */
+
 router.get('/', async function (req, res) {
-  let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
   if (req.session.admin === true) {
     res.render('index', { admin: true });
   } else {
-    res.render('index',{user});
+    res.render('index');
   }
 });
 
-router.get('/list/:id/:userid', async function (req, res) {
+router.get('/list/:id', async function (req, res) {
   let id = req.params.id
-  let userid = req.params.userid
-  console.log(id,userid);
-  db.get().collection('list').insertOne(id)
+  let userid = req.session.user
+  console.log(id, userid);
 });
 
 router.get('/logout', function (req, res) {
@@ -27,12 +25,14 @@ router.get('/logout', function (req, res) {
   res.redirect('/');
 });
 
-
 router.get('/profile', async function (req, res) {
   let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
   let uploads = await db.get().collection('uploads').find({ "user": req.session.user }).toArray()
-  console.log(uploads);
-  res.render('profile', { user, uploads })
+  if (user) {
+    res.render('profile', { user, uploads })
+  } else {
+    res.redirect('/login')
+  }
 });
 
 router.get('/list', async function (req, res) {
@@ -215,7 +215,7 @@ router.get('/:course/:semester/:subject/:type', async function (req, res) {
 router.get('/upload:parameter', async function (req, res) {
   let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
   let parameter = req.params.parameter
-  res.render('upload', { parameter ,user});
+  res.render('upload', { parameter, user });
 });
 
 router.post('/upload', async function (req, res) {

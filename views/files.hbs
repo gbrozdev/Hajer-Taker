@@ -9,7 +9,7 @@
             {{/if}}
 
         <a href="{{this.link}}">{{this.name}}<i class="download fas fa-download"></i></a>
-        <a href="/list/{{this._id}}">{{this.name}}<i class="save">O</i></a>
+        <a href="{{#if user}}/list/{{this._id}}{{else}}/login{{/if}}"><i class="save">O</i></a>
 
         </div>
         {{/each}}
