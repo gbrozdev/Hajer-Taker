@@ -15,10 +15,18 @@ router.get('/', async function (req, res) {
   }
 });
 
+router.get('/list/:id/:userid', async function (req, res) {
+  let id = req.params.id
+  let userid = req.params.userid
+  console.log(id,userid);
+  db.get().collection('list').insertOne(id)
+});
+
 router.get('/logout', function (req, res) {
   req.session.destroy()
   res.redirect('/');
 });
+
 
 router.get('/profile', async function (req, res) {
   let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })

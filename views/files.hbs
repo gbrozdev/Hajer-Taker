@@ -7,7 +7,10 @@
         <a href="/deleteupload/{{this._id}}" class="delete"><i class="far fa-trash-alt"></i></a>
         <a href="/editupload/{{this._id}}" class="edit"><i class="far fa-edit"></i></a>
             {{/if}}
+
         <a href="{{this.link}}">{{this.name}}<i class="download fas fa-download"></i></a>
+        <a href="/list/{{this._id}}">{{this.name}}<i class="save">O</i></a>
+
         </div>
         {{/each}}
     </div>
@@ -27,6 +30,11 @@
         position: absolute;
         right: 30px;
         margin-top:5px ;
+    }
+
+    .save {
+        position: absolute;
+        right: 60px;
     }
 
     .head {
