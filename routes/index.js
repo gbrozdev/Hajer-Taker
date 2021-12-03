@@ -7,6 +7,17 @@ var ObjectId = require('mongodb').ObjectId
 
 /* GET home page. */
 
+router.get('/profile', async function (req, res) {
+  req.session.url = '/profile'
+  let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
+  let uploads = await db.get().collection('uploads').find({ "user": req.session.user }).toArray()
+  if (user) {
+    res.render('profile', { user, uploads })
+  } else {
+    res.redirect('/login')
+  }
+});
+
 router.get('/', async function (req, res) {
   if (req.session.admin === true) {
     res.render('index', { admin: true });
@@ -17,10 +28,10 @@ router.get('/', async function (req, res) {
 
 router.get('/list/:id', async function (req, res) {
   if (req.session.user) {
-    let old = await db.get().collection('list').findOne({id: ObjectId(req.params.id), userid: req.session.user })
+    let old = await db.get().collection('list').findOne({ id: ObjectId(req.params.id), userid: req.session.user })
     if (!old) {
       let uploads = await db.get().collection('uploads').findOne({ _id: ObjectId(req.params.id) })
-      let listdata = { data: uploads, userid: req.session.user,id:uploads._id }
+      let listdata = { data: uploads, userid: req.session.user, id: uploads._id }
       db.get().collection('list').insertOne(listdata)
     }
     res.redirect('back')
@@ -32,17 +43,6 @@ router.get('/list/:id', async function (req, res) {
 router.get('/logout', function (req, res) {
   req.session.destroy()
   res.redirect('/');
-});
-
-router.get('/profile', async function (req, res) {
-  req.session.url = '/profile'
-  let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
-  let uploads = await db.get().collection('uploads').find({ "user": req.session.user }).toArray()
-  if (user) {
-    res.render('profile')
-  } else {
-    res.redirect('/login')
-  }
 });
 
 router.get('/list', async function (req, res) {
@@ -57,7 +57,7 @@ router.get('/list', async function (req, res) {
 
 router.get('/deletelist/:id', async function (req, res) {
   let id = req.params.id
- db.get().collection('list').deleteOne({ id: ObjectId(id), userid: req.session.user })
+  db.get().collection('list').deleteOne({ id: ObjectId(id), userid: req.session.user })
   res.redirect('back')
 });
 
@@ -230,7 +230,7 @@ router.get('/:course/:semester/:subject/:type', async function (req, res) {
     res.render('files', { course, semester, subject, type, uploads, admin: true });
   } else {
     if (req.session.user) {
-      res.render('files', { course, semester, subject, type, uploads,users:true });
+      res.render('files', { course, semester, subject, type, uploads, users: true });
     } else {
       res.render('files', { course, semester, subject, type, uploads });
     }
