@@ -39,7 +39,7 @@ router.get('/profile', async function (req, res) {
   let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
   let uploads = await db.get().collection('uploads').find({ "user": req.session.user }).toArray()
   if (user) {
-    res.render('profile', { user, uploads })
+    res.render('profile')
   } else {
     res.redirect('/login')
   }
