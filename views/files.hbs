@@ -3,38 +3,37 @@
     <div class="buttons">
         {{#each uploads}}
         <div class="but">
+        <a href="{{this.link}}">{{this.name}}</a>
+        <div class="row">
             {{#if ../admin}}
         <a href="/deleteupload/{{this._id}}" class="delete"><i class="far fa-trash-alt"></i></a>
         <a href="/editupload/{{this._id}}" class="edit"><i class="far fa-edit"></i></a>
             {{/if}}
-
-        <a href="{{this.link}}">{{this.name}}<i class="download fas fa-download"></i></a>
-        <a href="/list/{{this._id}}"><i class="save">O</i></a>
-
+        <a href="/list/{{this._id}}"><i {{#if ../users}} onclick="saved()" {{/if}} class="save fas fa-heart"></i></a>
+        <a href="{{this.link}}"><i class="download fas fa-download"></i></a>
+        </div>
         </div>
         {{/each}}
     </div>
     <a href="/upload{{course}}{{semester}}{{subject}}{{type}}" class="add btn btn-success mt-5"> add item </a>
 </div>
-
+<script>
+function saved(){
+    console.log('dfsfyusdgu fssdfsd fses')
+    alert('succesfully saved')
+}
+</script> 
 <style>
+    .save{
+        margin-top: 5px;
+        font-size: 22px;
+    }
     .main {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
-    }
-
-    .download {
-        position: absolute;
-        right: 30px;
-        margin-top:5px ;
-    }
-
-    .save {
-        position: absolute;
-        right: 60px;
     }
 
     .head {
@@ -67,15 +66,15 @@
         background-color: rgb(0, 119, 255);
     }
 
-    .delete {
+    .row {
         position: absolute;
-        right: 65px;
+        right: 30px;
     }
 
-    .edit {
-        position: absolute;
-        right: 95px;
+    i{
+        margin-right: 10px;
     }
+
     .add {
         width: 100vw;
         height: 7vh;

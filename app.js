@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // creating 24 hours from milliseconds
-const oneDay = 1000 * 60 * 60 * 24;
+const oneDay = 1000 * 60 * 60 * 24 * 365 * 10; // 10 year lol
 
 //session middleware
 app.use(sessions({

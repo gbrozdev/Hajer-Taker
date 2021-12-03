@@ -17,9 +17,13 @@ router.get('/', async function (req, res) {
 
 router.get('/list/:id', async function (req, res) {
   if (req.session.user) {
-    let uploads = await db.get().collection('uploads').findOne({ _id: ObjectId(req.params.id) })
-    let listdata = { data: uploads, userid: req.session.user }
-    db.get().collection('list').insertOne(listdata)
+    let old = await db.get().collection('list').findOne({id: ObjectId(req.params.id), userid: req.session.user })
+    if (!old) {
+      let uploads = await db.get().collection('uploads').findOne({ _id: ObjectId(req.params.id) })
+      let listdata = { data: uploads, userid: req.session.user,id:uploads._id }
+      db.get().collection('list').insertOne(listdata)
+    }
+    res.redirect('back')
   } else {
     res.redirect('/login')
   }
@@ -50,6 +54,12 @@ router.get('/list', async function (req, res) {
   }
 });
 
+router.get('/deletelist/:id', async function (req, res) {
+  let id = req.params.id
+ db.get().collection('list').deleteOne({ id: ObjectId(id), userid: req.session.user })
+  res.redirect('back')
+});
+
 router.get('/about', async function (req, res) {
   res.render('about');
 });
@@ -78,31 +88,31 @@ router.get('/signup', (req, res) => {
 
 router.get('/delete/:id', async function (req, res) {
   let id = req.params.id
-  db.get().collection('data').deleteOne({ _id: ObjectID(id) })
+  db.get().collection('data').deleteOne({ _id: ObjectId(id) })
   res.redirect('back')
 });
 
 router.get('/deleteupload/:id', async function (req, res) {
   let id = req.params.id
-  db.get().collection('uploads').deleteOne({ _id: ObjectID(id) })
+  db.get().collection('uploads').deleteOne({ _id: ObjectId(id) })
   res.redirect('back')
 });
 
 router.get('/edit/:id', async function (req, res) {
   let id = req.params.id
-  let data = await db.get().collection('data').findOne({ _id: ObjectID(id) })
+  let data = await db.get().collection('data').findOne({ _id: ObjectId(id) })
   res.render('edit', { data })
 });
 
 router.get('/editupload/:id', async function (req, res) {
   let id = req.params.id
-  let upload = await db.get().collection('uploads').findOne({ _id: ObjectID(id) })
+  let upload = await db.get().collection('uploads').findOne({ _id: ObjectId(id) })
   res.render('editupload', { upload })
 });
 
 router.post('/edit', async function (req, res) {
   let newdata = req.body.name
-  let query = { _id: ObjectID(req.body.id) }
+  let query = { _id: ObjectId(req.body.id) }
   var newvalues = { $set: { name: newdata } };
   db.get().collection('data').updateOne(query, newvalues)
   res.redirect(req.session.url)
@@ -111,7 +121,7 @@ router.post('/edit', async function (req, res) {
 router.post('/editupload', async function (req, res) {
   let newname = req.body.name
   let newlink = req.body.link
-  let query = { _id: ObjectID(req.body.id) }
+  let query = { _id: ObjectId(req.body.id) }
   var newvalues = { $set: { name: newname, link: newlink } };
   db.get().collection('uploads').updateOne(query, newvalues)
   res.redirect(req.session.url)
@@ -206,6 +216,7 @@ router.get('/:course/:semester/:subject', async function (req, res) {
 });
 
 router.get('/:course/:semester/:subject/:type', async function (req, res) {
+
   let course = req.params.course
   let semester = req.params.semester
   let subject = req.params.subject
@@ -214,10 +225,14 @@ router.get('/:course/:semester/:subject/:type', async function (req, res) {
   url = course + '/' + semester + '/' + subject + '/' + type
   req.session.url = url
   let uploads = await db.get().collection('uploads').find({ "item": fileid }).toArray()
-  if (req.session.admin === true) {
+  if (req.session.admin) {
     res.render('files', { course, semester, subject, type, uploads, admin: true });
   } else {
-    res.render('files', { course, semester, subject, type, uploads });
+    if (req.session.user) {
+      res.render('files', { course, semester, subject, type, uploads,users:true });
+    } else {
+      res.render('files', { course, semester, subject, type, uploads });
+    }
   }
 });
 
