@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../connection')
+var fun = require('../functions')
 var ObjectId = require('mongodb').ObjectId
 
 
@@ -17,7 +18,11 @@ router.get('/', async function (req, res) {
 router.get('/list/:id', async function (req, res) {
   let id = req.params.id
   let userid = req.session.user
-  console.log(id, userid);
+  if (req.session.user) {
+    console.log(id, userid);
+  } else {
+    res.redirect('/login')
+  }
 });
 
 router.get('/logout', function (req, res) {
@@ -228,8 +233,36 @@ router.post('/upload', async function (req, res) {
   res.redirect(url);
 });
 
+router.post('/signup', (req, res) => {
+  fun.doSignup(req.body).then((response) => {
+    if (response.signupstatus) {
+      session = req.session;
+      session.user = response.insertedId
+      session.loggedfalse = false
+      session.loggedIN = true
+      res.redirect(req.session.url)
+    } else {
+      req.session.signupstatusfalse = true
+      res.redirect('/signup/')
+    }
+  })
+})
 
 
+router.post('/login', (req, res) => {
+  fun.doLogin(req.body).then((response) => {
+    if (response.status) {
+      req.session.user = String(response.user._id)
+      req.session.loggedfalse = false
+      req.session.loggedIN = true
+      res.redirect(req.session.url)
+
+    } else {
+      req.session.loggedfalse = true
+      res.redirect('/login');
+    }
+  })
+})
 
 
 
