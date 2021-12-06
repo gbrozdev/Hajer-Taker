@@ -1,49 +1,65 @@
 <h1 class=" head mt-2"><b>{{file.name}}</b></h1>
 <br />
-<p class="article">Studocu is a place for college students. here you can download every documents you want for studies.
-  most of the
-  notes and and question pappers are already on the internet. but everything is scattered throughout websites and its
-  all hard to find. so we are trying to make them all group. then everyone can easly found it. you can also support us
-  by adding the link of documents you have in the correct place.. now we have only calicut university.. in future we you
-  can take an Account on this app and save your documents in saved list. Just click on your Browsers bar and add this to
-  your homescreen. This site is made for mobiles</p>
+<article>
 
-<div class="container mt-3">
+  <p class="article">
+    Download the {{semester}} {{type}} of {{subject}} For Calicut University {{course}} Students.
+    From below link you can download the {{semester}} {{type}} of {{course}} course {{subject}} pdf for University of Calicut School of Distance Education.
+  </p>
+<br/>
+  <p class="article">studocu is a place for college students. here you can download every documents you want for
+    studies.
+    most of the
+    notes and and question pappers are already on the internet. but everything is scattered throughout websites and its
+    all hard to find. so we are trying to make them all group. then everyone can easly found it. you can also support us
+    by adding the link of documents you have in the correct place.. now we have only calicut university.. in future we
+    add other universities too. you can take an <a class="g" href="/myprofile">Account</a> on this app and save your
+    documents in saved list. Just click on
+    your Browsers bar and add this to your homescreen. This site is made for mobiles.. visit our <a class="b"
+      href="/myprofile">Home</a>Page for more..</p>
 
-  <div class="row">
-    <h5 class="g">University -</h5>
-    <h5 class="t">Calicut University</h5>
-  </div>
-  <div class="row">
-    <h5 class="g">Course -</h5>
-    <h5 class="t">Bca</h5>
-  </div>
-  <div class="row">
-    <h5 class="g">Semester -</h5>
-    <h5 class="t">Semester-1</h5>
-  </div>
-  <div class="row">
-    <h5 class="g">Subject -</h5>
-    <h5 class="t">Maths</h5>
-  </div>
-  <div class="row">
-    <h5 class="g">Type -</h5>
-    <h5 class="t">Question Papper</h5>
-  </div>
-  <div class="row">
-    <h5 class="g">Name -</h5>
-    <h5 class="t">2017</h5>
+  <div class="container mt-3">
+
+    <div class="row">
+      <h5 class="g">University -</h5>
+      <h5 class="t">Calicut University</h5>
+    </div>
+    <div class="row">
+      <h5 class="g">Course -</h5>
+      <h5 class="t">{{course}}</h5>
+    </div>
+    <div class="row">
+      <h5 class="g">Semester -</h5>
+      <h5 class="t">{{semester}}</h5>
+    </div>
+    <div class="row">
+      <h5 class="g">Subject -</h5>
+      <h5 class="t">{{subject}}</h5>
+    </div>
+    <div class="row">
+      <h5 class="g">Type -</h5>
+      <h5 class="t">{{type}}</h5>
+    </div>
+    <div class="row">
+      <h5 class="g">Name -</h5>
+      <h5 class="t">{{file.name}}</h5>
+    </div>
+
   </div>
 
-</div>
+  <a class="mt-4 btn btn-lg btn-block btn-primary" href="{{file.link}}">Click here to Download</a>
 
-<a class="mt-4 btn btn-lg btn-block btn-primary" href="{{file.link}}">Click here to Download</a>
+  <div class="mt-4">
+    <iframe src="{{file.link}}"></iframe>
+  </div>
 
-<div class="mt-4">
-  <iframe src="{{file.link}}"></iframe>
-</div>
+</article>
 
 <style>
+  .g:hover {
+    color: green;
+  }
+
   .head {
     font-size: 25px;
     font-family: 'PT Sans', sans-serif;
