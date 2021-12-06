@@ -1,7 +1,7 @@
 <h1 class=" head mt-3"><b>{{type}} of Calicut University for {{course}} {{semester}} Download | {{file.filename}} </b></h1>
 <div class="banner-text mainblog-img mt-5 mb-4">
-  <h4 class="ban-txt">{{subject}}</h4>
-  <h3 class="ban-txt m-2">{{type}}</h3>
+  <h5 class="ban-txt">{{subject}}</h5>
+  <h4 class="ban-txt m-2">{{type}}</h4>
   <h6 class="ban-txt2">{{course}}-{{semester}}-Calicut University</h6>
   <br />
   <p class="ban-txt">studocu.herokuapp.com</p>
@@ -99,7 +99,10 @@
     width: 100%;
     height: 30vh;
     border-radius: 0.5rem;
-    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .smallban-txt1 {
