@@ -244,8 +244,12 @@ router.get('/:course/:semester/:subject/:type/:id/:filename', async function (re
   let type = req.params.type
   let id = req.params.id
   let file = await db.get().collection('uploads').findOne({ _id: ObjectId(id) })
-  res.render('fileframe', { file,course,semester,subject,type });
- })
+  let url = file.link;
+  let myArray = url.split("/").pop();
+  myArray = myArray.split(".")
+  file.filename = myArray[0]
+  res.render('fileframe', { file, course, semester, subject, type });
+})
 
 router.get('/upload:parameter', async function (req, res) {
   let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
@@ -292,8 +296,5 @@ router.post('/login', (req, res) => {
     }
   })
 })
-
-
-
 
 module.exports = router;
