@@ -154,7 +154,8 @@ router.post('/admin', async function (req, res) {
   let admindata = req.body
   if (admindata.gmail === "gbroz@123", admindata.password === "9846551975") {
     req.session.admin = true
-    res.redirect('/');
+    let users = await db.get().collection('users').find().toArray()
+    res.render('admindata', { users });
   } else {
     res.render('admin');
   }
@@ -248,7 +249,9 @@ router.get('/:course/:semester/:subject/:type/:id/:filename', async function (re
   let myArray = url.split("/").pop();
   myArray = myArray.split(".")
   file.filename = myArray[0]
-  res.render('fileframe', { file, course, semester, subject, type });
+  let blogname = "Calicut University " + course+" "+ semester+" "+ subject+" " + type + " download | " + file.filename
+  let blogdesc = "Calicut University " + course+" "+ semester+" "+ subject+" " + type + " You can download from here.. Studocu place for calicut university students | " + file.filename
+  res.render('fileframe', { file, course, semester, subject, type, blogname,blogdesc });
 })
 
 router.get('/upload:parameter', async function (req, res) {
