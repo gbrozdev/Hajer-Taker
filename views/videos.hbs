@@ -17,7 +17,28 @@
         </div>
         {{/each}}
     </div>
-    <a href="/uploadvideos{{course}}{{semester}}{{subject}}" class="add btn btn-success mt-5"> Add Video </a>
+
+    <div class="buttons">
+        {{#each uploadplaylist}}
+        <div class="vid">
+            <div class="row vid-head">
+                <h5 class="ml-4"> {{this.name}}</h5>
+                {{#if ../admin}}
+                <a href="/deleteupload/{{this._id}}" class="delete mt-1"><i class="far fa-trash-alt"></i></a>
+                {{/if}}
+            </div>
+
+            <iframe src="https://www.youtube.com/embed/videoseries?{{this.playlist}}" title="YouTube video player"
+                frameborder="0" class="vid-screen"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        {{/each}}
+    </div>
+    <div class="row addd">
+        <a href="/uploadvideos{{course}}{{semester}}{{subject}}" class="add btn btn-success mt-5"> Add Video </a>
+        <a href="/uploadplaylist{{course}}{{semester}}{{subject}}" class="add btn btn-success mt-5"> Add Playlist </a>
+    </div>
 </div>
 
 
@@ -29,7 +50,8 @@
         width: 100vw;
         height: 56.25vw;
     }
-    .vid-head{
+
+    .vid-head {
         height: 60px;
         display: flex;
         align-items: center;
@@ -82,7 +104,7 @@
     }
 
     .add {
-        width: 100vw;
+        width: 50vw;
         height: 7vh;
         font-weight: 600;
         font-size: 20px;
@@ -90,7 +112,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+    }
+    .addd{
         position: fixed;
         bottom: 0;
+        left: 0;
     }
 </style>

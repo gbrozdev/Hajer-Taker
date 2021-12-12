@@ -1,6 +1,10 @@
 <div class="main">
     <h1 class="head">{{subject}}</h1>
     <div class="buttons">
+            <a href="/{{../course}}/{{../semester}}/{{../subject}}/Previous-Question-Pappers">Previous-Question-Pappers</a>
+            <a href="/{{../course}}/{{../semester}}/{{../subject}}/Text-Book">Text-Book</a>
+            <a href="/{{../course}}/{{../semester}}/{{../subject}}/Study-Materials">Study-Materials</a>
+            <a href="/{{../course}}/{{../semester}}/{{../subject}}/Syllabus">Syllabus</a>
         {{#each data}}
         <div class="but">
             {{#if ../admin}}
@@ -9,7 +13,7 @@
             <a href="/edit/{{this._id}}" class="edit"><i class="far fa-edit"></i></a>
             {{/if}}
             <a href="/{{../course}}/{{../semester}}/{{../subject}}/{{this.name}}"> {{this.name}}</a>
-        </div>
+        </div> 
         {{/each}}
         <a href="/videos/{{course}}/{{semester}}/{{subject}}" class="vidbut btn btn-info"> Videos </a>
     </div>

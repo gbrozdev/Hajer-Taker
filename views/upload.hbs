@@ -2,13 +2,52 @@
   <br class="form-group">
     <h5>Upload Item</h5>
     <br>
-    <h6>Item Name</h6>
+    <h6>Name</h6>
     <input type="text" name="name" class="form-control mt-3">
     <br>
-    <h6>Item Link</h6>
-    <input type="url" name="link" class="form-control mt-3">
+
+
+  <select class="form-select" id="video" onchange="changed()" required aria-label="Default select example">
+  <option selected>Select Content Type</option>
+  <option value="link">link</option>
+  <option value="playlist">playlist</option>
+</select>
+
+    <br/>
+   <h6 id="title-content"  ></h6>
+    <br/>
+    <input type="url" id="videotag" disabled required class="form-control mt-3">
+
+
     <input type="text" name="item" value="{{parameter}}" hidden>
     <input type="text" name="user" value="{{user._id}}" hidden>
   </div>
   <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form>
+
+
+
+
+
+
+
+
+
+
+<script>
+  function changed(){
+    console.log('hlo')
+    let currentv = document.getElementById('video').value
+    console.log(currentv)
+    if(currentv == 'playlist'){
+      document.getElementById('title-content').innerHTML = 'Playlist Link'
+      document.getElementById('videotag').name = 'playlist'
+      document.getElementById('videotag').disabled = false
+    }
+    if(currentv == 'link'){
+      document.getElementById('title-content').innerHTML = 'Video link'
+      document.getElementById('videotag').name = 'link'
+      document.getElementById('videotag').disabled = false
+    }
+  }
+</script>
