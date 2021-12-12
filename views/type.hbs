@@ -1,10 +1,10 @@
 <div class="main">
     <h1 class="head">{{subject}}</h1>
     <div class="buttons">
-            <a href="/{{../course}}/{{../semester}}/{{../subject}}/Previous-Question-Pappers">Previous-Question-Pappers</a>
-            <a href="/{{../course}}/{{../semester}}/{{../subject}}/Text-Book">Text-Book</a>
-            <a href="/{{../course}}/{{../semester}}/{{../subject}}/Study-Materials">Study-Materials</a>
-            <a href="/{{../course}}/{{../semester}}/{{../subject}}/Syllabus">Syllabus</a>
+            <a class="but" href="/{{course}}/{{semester}}/{{subject}}/Previous-Question-Pappers">Previous-Question-Pappers</a>
+            <a class="but" href="/{{course}}/{{semester}}/{{subject}}/Text-Book">Text-Book</a>
+            <a class="but" href="/{{course}}/{{semester}}/{{subject}}/Study-Materials">Study-Materials</a>
+            <a class="but" href="/{{course}}/{{semester}}/{{subject}}/Syllabus">Syllabus</a>
         {{#each data}}
         <div class="but">
             {{#if ../admin}}
@@ -62,6 +62,9 @@
         background: linear-gradient(90deg,
                 rgba(20, 159, 255, 1) 0%,
                 rgba(17, 122, 255, 1) 100%);
+    }
+    .but:hover{
+        color: white;
     }
 
     .delete {
