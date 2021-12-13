@@ -271,12 +271,14 @@ router.post('/upload', async function (req, res) {
   let upload = req.body
   var ytlink = upload.link
   var playlist = upload.playlist
-  ytlink = ytlink.replace("https://youtu.be/", "");
-  upload.link = ytlink
-  playlist = ytlink.replace("https://www.youtube.com/playlist?", "");
-  upload.playlist = playlist
-  console.log(upload.link);
-  console.log(upload.playlist);
+  if (ytlink) {
+    ytlink = ytlink.replace("https://youtu.be/", "");
+    upload.link = ytlink
+  }
+  if (playlist) {
+    playlist = playlist.replace("https://www.youtube.com/playlist?", "");
+    upload.playlist = playlist
+  }
   db.get().collection('uploads').insertOne(upload)
   url = req.session.url
   res.redirect(url);

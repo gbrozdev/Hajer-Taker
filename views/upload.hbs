@@ -6,19 +6,18 @@
     <input type="text" name="name" class="form-control mt-3">
     <br>
   <select class="form-select" id="video" onchange="changed()" required aria-label="Default select example">
-  <option selected>Select Content Type</option>
+  <option selected>Select Video Type</option>
   <option value="link">Video</option>
   <option value="playlist">Playlist</option>
 </select>
 
     <br/>
-   <h6 id="title-content"  ></h6>
     <br/>
+   <h6 id="title-content"  ></h6>
     <input type="url" id="videotag" disabled required class="form-control mt-3">
-
-
-    <input type="text" name="item" value="{{parameter}}" hidden>
-    <input type="text" name="user" value="{{user._id}}" hidden>
+    
+    <input type="text" name="item" class="form-control mt-3" value="{{parameter}}" hidden >
+    <input type="text" name="user" class="form-control mt-3" value="{{user._id}}"  hidden >
   </div>
   <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form>
@@ -28,7 +27,20 @@
 
 
 
-
+<style>
+  select{
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+  }
+  option{
+    padding: 5px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 17px;
+  }
+</style>
 
 
 

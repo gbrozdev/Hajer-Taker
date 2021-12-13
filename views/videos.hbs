@@ -19,7 +19,7 @@
     </div>
 
     <div class="buttons">
-        {{#each uploadplaylist}}
+        {{#each uploads}}
         <div class="vid">
             <div class="row vid-head">
                 <h5 class="ml-4"> {{this.name}}</h5>
@@ -35,10 +35,7 @@
         </div>
         {{/each}}
     </div>
-    <div class="row addd">
         <a href="/uploadvideos{{course}}{{semester}}{{subject}}" class="add btn btn-success mt-5"> Add Video </a>
-        <a href="/uploadplaylist{{course}}{{semester}}{{subject}}" class="add btn btn-success mt-5"> Add Playlist </a>
-    </div>
 </div>
 
 
@@ -104,7 +101,10 @@
     }
 
     .add {
-        width: 50vw;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
         height: 7vh;
         font-weight: 600;
         font-size: 20px;
@@ -112,11 +112,5 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
-    }
-    .addd{
-        position: fixed;
-        bottom: 0;
-        left: 0;
     }
 </style>
