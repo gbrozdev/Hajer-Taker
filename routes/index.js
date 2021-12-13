@@ -245,10 +245,11 @@ router.get('/:course/:semester/:subject/:type/:id/:filename', async function (re
   let type = req.params.type
   let id = req.params.id
   let file = await db.get().collection('uploads').findOne({ _id: ObjectId(id) })
-  let url = file.link;
+  let url = file.pdf;
   let myArray = url.split("/").pop();
   myArray = myArray.split(".")
   file.filename = myArray[0]
+  console.log(file);
   let blogname = "Calicut University " + course+" "+ semester+" "+ subject+" " + type + " download | " + file.filename
   let blogdesc = "Calicut University " + course+" "+ semester+" "+ subject+" " + type + " You can download from here.. Studocu place for calicut university students | " + file.filename
   res.render('fileframe', { file, course, semester, subject, type, blogname,blogdesc });
@@ -258,6 +259,12 @@ router.get('/upload:parameter', async function (req, res) {
   let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
   let parameter = req.params.parameter
   res.render('upload', { parameter, user });
+});
+
+router.get('/pdfupload:parameter', async function (req, res) {
+  let user = await db.get().collection('users').findOne({ _id: ObjectId(req.session.user) })
+  let parameter = req.params.parameter
+  res.render('uploadpdf', { parameter, user });
 });
 
 router.post('/upload', async function (req, res) {
@@ -270,6 +277,14 @@ router.post('/upload', async function (req, res) {
   upload.playlist = playlist
   console.log(upload.link);
   console.log(upload.playlist);
+  db.get().collection('uploads').insertOne(upload)
+  url = req.session.url
+  res.redirect(url);
+});
+
+router.post('/pdfupload', async function (req, res) {
+  let upload = req.body
+  console.log(upload);
   db.get().collection('uploads').insertOne(upload)
   url = req.session.url
   res.redirect(url);
