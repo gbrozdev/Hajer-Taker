@@ -104,7 +104,7 @@ router.get('/edit/:id', async function (req, res) {
   let data = await db.get().collection('data').findOne({ _id: ObjectId(id) })
   res.render('edit', { data })
 });
-
+ 
 router.get('/editupload/:id', async function (req, res) {
   let id = req.params.id
   let upload = await db.get().collection('uploads').findOne({ _id: ObjectId(id) })
