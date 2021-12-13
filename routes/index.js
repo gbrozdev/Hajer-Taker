@@ -168,11 +168,12 @@ router.get('/videos/:course/:semester/:subject', async function (req, res) {
   let videoid = ('videos' + course + semester + subject)
   url = 'videos' + '/' + course + '/' + semester + '/' + subject
   req.session.url = url
-  let uploads = await db.get().collection('uploads').find({ "item": videoid }).toArray()
+  let uploads = await db.get().collection('uploads').find({ "item": videoid, "type": "link" }).toArray()
+  let playlists = await db.get().collection('uploads').find({ "item": videoid , "type":"playlist" }).toArray()
   if (req.session.admin === true) {
-    res.render('videos', { course, semester, subject, uploads, admin: true });
+    res.render('videos', { course, semester, subject, uploads, playlists , admin: true });
   } else {
-    res.render('videos', { course, semester, subject, uploads });
+    res.render('videos', { course, semester, subject, uploads ,playlists });
   }
 });
 
@@ -245,7 +246,7 @@ router.get('/:course/:semester/:subject/:type/:id/:filename', async function (re
   let type = req.params.type
   let id = req.params.id
   let file = await db.get().collection('uploads').findOne({ _id: ObjectId(id) })
-  let url = file.pdf;
+  let url = file.link;
   let myArray = url.split("/").pop();
   myArray = myArray.split(".")
   file.filename = myArray[0]
@@ -276,7 +277,7 @@ router.post('/upload', async function (req, res) {
     upload.link = ytlink
   }
   if (playlist) {
-    playlist = playlist.replace("https://www.youtube.com/playlist?", "");
+    playlist = playlist.replace("https://youtube.com/playlist?", "");
     upload.playlist = playlist
   }
   db.get().collection('uploads').insertOne(upload)

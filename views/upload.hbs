@@ -15,6 +15,7 @@
     <br/>
    <h6 id="title-content"  ></h6>
     <input type="url" id="videotag" disabled required class="form-control mt-3">
+    <input type="text" name="type" id="type" hidden class="form-control mt-3">
     
     <input type="text" name="item" class="form-control mt-3" value="{{parameter}}" hidden >
     <input type="text" name="user" class="form-control mt-3" value="{{user._id}}"  hidden >
@@ -52,11 +53,13 @@
     if(currentv == 'playlist'){
       document.getElementById('title-content').innerHTML = 'Playlist Link'
       document.getElementById('videotag').name = 'playlist'
+      document.getElementById('type').value = 'playlist'
       document.getElementById('videotag').disabled = false
     }
     if(currentv == 'link'){
       document.getElementById('title-content').innerHTML = 'Video link'
       document.getElementById('videotag').name = 'link'
+      document.getElementById('type').value = 'link'
       document.getElementById('videotag').disabled = false
     }
   }
