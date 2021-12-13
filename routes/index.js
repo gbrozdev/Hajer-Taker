@@ -286,7 +286,6 @@ router.post('/upload', async function (req, res) {
 
 router.post('/pdfupload', async function (req, res) {
   let upload = req.body
-  console.log(upload);
   db.get().collection('uploads').insertOne(upload)
   url = req.session.url
   res.redirect(url);
